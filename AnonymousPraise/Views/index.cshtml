@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Anonymous CSOKI Praise</title>
+	<link href="~/Scripts/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Scripts/Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+	<link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+	<body>
+
+		<div class="navbar-wrapper">
+			<div class="container">
+				<div class="navbar">
+					<div class="navbar-inner">
+						<span class="brand">Anonymous Praise</span>
+						<ul class="nav">
+							<li class="active"><a href="#" data-page="recentPraise" class="page" data-bind="click: $root.refresh">Home</a></li>
+							<li class="dropdown" id="peopleDropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">People <b class="caret"></b></a>
+								<ul class="dropdown-menu" data-bind="foreach: people">
+									<li>
+										<a href="#" data-page="person" class="page" data-bind="click: $root.select, text: $data"></a>
+									</li>
+								</ul>
+							</li>
+							<li><a href="#" data-page="moderation" class="page" data-bind="visible: unModeratedPraise().length > 0">Moderate</a></li>
+						</ul>
+					</div><!-- /.navbar-inner -->
+				</div><!-- /.navbar -->
+			</div>
+		</div>
+
+		<div id="myCarousel" class="carousel slide">
+			<div class="carousel-inner" data-bind="foreach: topPraise()">
+				<div data-bind="attr: { class : $parent.topPraise()[0] === $data ? 'item active' : 'item' }">
+					<img data-bind="attr: {src: '../Images/slide-' + $index() + '.jpg' }" alt="" />
+					<div class="container">
+						<div class="carousel-caption">
+							<h1><span data-bind="text: Person"></span></h1>
+							<p data-bind="text: Date"></p>
+							<p class="lead">
+								<span data-bind="text: Comment"></span>
+								<span class="badge badge-info" data-bind="text: Likes, visible: Likes() > 0"></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>			
+		</div>
+			
+		<div class="container">
+			<div class="row">
+				<div class="span3">
+					<h3>Give Praise</h3>
+					<select data-bind="options: people, value: selectedPerson"></select>
+					<textarea rows="4" data-bind="value: currentPraise, valueUpdate: 'afterkeydown'"></textarea>
+					<p><span data-bind="text: remainingCharacters"></span></p>
+					<div data-bind="attr: { class: alertClass }, slideVisible: alertMessage().length > 0, slideDuration: 200" class="alert alert-error">
+						<button type="button" class="close" data-bind="click: clearMessage">&times;</button>
+						<span data-bind="text: alertMessage"></span>
+					</div>
+					<div class="form-actions">
+						<a class="btn btn-success" data-bind="click: submitPraise, attr: { class: remainingCharacters() < 0 ? 'btn btn-success disabled' : 'btn btn-success' }">Praise</a>
+						<a class="btn" data-bind="click: clearPraise">Cancel</a>
+					</div>
+					<span class="label">Note</span> <small>All praise must go through moderation before it is displayed in the Recent Praise section</small>
+
+				</div>
+				<div class="span9" id="pageContainer">
+					<section id="recentPraise" class="page">
+						<h3>Recent Praise</h3>
+						<!-- ko template: { name: 'praise-template', foreach: recentPraise } -->
+						<!-- /ko -->
+					</section>
+					
+					<section id="moderation" class="page">
+						<h3>Moderation</h3>
+						<!-- ko template: { name: 'moderation-template', foreach: unModeratedPraise } -->
+						<!-- /ko -->
+					</section>
+					
+					<section id="person" class="page">
+						<h3>
+							<span data-bind="text: viewPerson"></span> 
+							<span class="badge badge-inverse" data-bind="text: currentEmployeePraise().length" title="Praise"></span> 
+							<span class="badge badge-info" data-bind="text: currentEmployeeLikes()" title="Likes"></span>
+						</h3>
+						<!-- ko template: { name: 'praise-template', foreach: currentEmployeePraise } -->
+						<!-- /ko -->
+					</section>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/html" id="moderation-template">
+			<blockquote>
+				<div class="row">
+					<div class="span9">
+						<p data-bind="text: Comment"></p>
+						<small>A comment about 
+							<span data-bind="with: Person">
+								<a href="#" data-page="person" class="page" data-bind="click: $root.select, text: $data"></a>
+							</span> posted 
+							<span data-bind="text: Date"></span>
+						</small>
+					</div>
+					<div class="span3">
+						<a class="btn btn-success" data-bind="click: $parent.approve">Approve</a>
+						<a class="btn btn-danger" data-bind="click: $parent.deny">Delete</a>
+					</div>
+				</div>
+			</blockquote>
+		</script>
+
+		<script type="text/html" id="praise-template">
+			<blockquote>
+				<p><span class="badge badge-info" data-bind="text: Likes, visible: Likes() > 0"></span> <span data-bind="text: Comment"></span> <a href="#" data-bind="click: $parent.like, visible: CanLike()"><i class="icon-thumbs-up"></i></a></p>
+				<small>A comment about 
+					<span data-bind="with: Person">
+						<a href="#" data-page="person" class="page" data-bind="click: $root.select, text: $data"></a>
+					</span> posted 
+					<span data-bind="text: Date"></span>
+				</small>
+			</blockquote>
+		</script>
+		
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="~/Scripts/lib/jquery.cookie.js"></script>
+		<script src="~/Scripts/lib/knockout-2.1.0.js"></script>
+		<script src="~/Scripts/ap.initialize.js"></script>
+		<script src="~/Scripts/ap.people.js"></script>
+		<script src="~/Scripts/ap.praise.js"></script>
+		<script src="~/Scripts/ap.routing.js"></script>
+		<script src="~/Scripts/ap.viewModel.js"></script>
+		<script src="~/Scripts/ko.slideVisible.js"></script>
+		<script src="~/Scripts/Bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				ap.initialize();
+			});
+		</script>
+	</body>
+</html>
