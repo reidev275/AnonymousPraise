@@ -3,7 +3,7 @@
 	ap.praise = ap.praise || {};
 
 	var canCache = localStorage != null,
-	    storageLocation = 'ap.Likes',
+		storageLocation = 'ap.Likes',
 		moderator = $.cookie('praisemoderator'),
 		aplikes = localStorage[storageLocation],
 		likes = [];
@@ -45,14 +45,14 @@
 	};
 
 	ap.praise.get = function (person, callback) {
-        $.ajax({
-        	url: "../api/Praise?name=" + person,
-            type: "GET",
-            cache: false,
-            contentType: "application/json; charset=utf-8"
-        }).done(function(data) {
-            if (callback) callback(data);
-        });
+		$.ajax({
+			url: "../api/Praise?name=" + person,
+			type: "GET",
+			cache: false,
+			contentType: "application/json; charset=utf-8"
+		}).done(function(data) {
+			if (callback) callback(data);
+		});
 	};
 
 	ap.praise.getRecent = function(callback) {
@@ -115,17 +115,17 @@
 	};
 
 	ap.praise.submit = function (praise, callback) {
-        $.ajax({
-            url: "../api/Praise",
-            type: "POST",
-            data: JSON.stringify(praise),
-            cache: false,
-            contentType: "application/json; charset=utf-8",
-            beforeSend: addHeader
-        }).done(function (data) {
-            if (callback) callback(data);
-        });
-    };
+		$.ajax({
+			url: "../api/Praise",
+			type: "POST",
+			data: JSON.stringify(praise),
+			cache: false,
+			contentType: "application/json; charset=utf-8",
+			beforeSend: addHeader
+		}).done(function (data) {
+			if (callback) callback(data);
+		});
+	};
 
 	return ap;
 })(ap || {}, jQuery, ko)
