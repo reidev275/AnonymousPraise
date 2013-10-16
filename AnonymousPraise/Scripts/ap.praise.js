@@ -4,7 +4,8 @@
 
 	var canCache = localStorage != null,
 		storageLocation = 'ap.Likes',
-		moderator = $.cookie('praisemoderator'),
+		cookieName = 'praisemoderator',
+		moderator = $.cookie(cookieName),
 		aplikes = localStorage[storageLocation],
 		likes = [];
 
@@ -32,6 +33,15 @@
 			return false;
 		}
 	}
+
+	ap.setModerator = function (val) {
+		$.cookie(cookieName, val);
+		moderator = val;
+	};
+
+	ap.getModerator = function () {
+		return moderator;
+	};
 
 	ap.Praise = function(obj) {
 		var self = this;

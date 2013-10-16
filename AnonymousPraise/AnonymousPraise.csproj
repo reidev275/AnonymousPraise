@@ -90,7 +90,6 @@
     <Compile Include="Controllers\PraiseController.cs" />
     <Compile Include="Data\IPeopleRepository.cs" />
     <Compile Include="Data\IPraiseRepository.cs" />
-    <Compile Include="Data\MemoryPeopleRepository.cs" />
     <Compile Include="Data\SqlMapper.cs" />
     <Compile Include="Data\SqlPeopleRepository.cs" />
     <Compile Include="Data\SqlPraiseRepository.cs" />

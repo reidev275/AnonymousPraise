@@ -4,6 +4,11 @@
 
 		self.people = ko.observableArray([]);
 		
+		self.moderatorKey = ko.observable(ap.getModerator());
+		self.saveModeratorKey = function () {
+			ap.setModerator(self.moderatorKey());
+		};
+
 		self.alertMessage = ko.observable("");
 		self.alertClass = ko.observable("alert alert-success");
 		self.clearMessage = function () {
