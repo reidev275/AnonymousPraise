@@ -20,7 +20,7 @@ namespace AnonymousPraise.Data
 			{
 				conn.Open();
 				return conn.Query<string>(
-					"Select Name from [Praise].[dbo].[People] with (nolock) order by Name"
+					"Select Name from [dbo].[People] with (nolock) order by Name"
 					);
 			}
 		}
