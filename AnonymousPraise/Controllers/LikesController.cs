@@ -4,19 +4,19 @@ using AnonymousPraise.Data;
 
 namespace AnonymousPraise.Controllers
 {
-    public class LikesController : ApiController
-    {
+	public class LikesController : ApiController
+	{
 		private readonly IPraiseRepository _praiseRepository;
 
 		public LikesController()
-    	{
-			_praiseRepository = new SqlPraiseRepository(ConfigurationManager.ConnectionStrings["praise"].ConnectionString);
-    	}
+		{
+			_praiseRepository = new SqlPraiseRepository(ConfigurationManager.ConnectionStrings["anonymouspraise_db"].ConnectionString);
+		}
 
-        // POST api/likes
-        public void Post(int praiseId)
-        {
-	        _praiseRepository.Like(praiseId);
-        }
-    }
+		// POST api/likes
+		public void Post(int praiseId)
+		{
+			_praiseRepository.Like(praiseId);
+		}
+	}
 }

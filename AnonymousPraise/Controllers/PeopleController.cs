@@ -11,7 +11,7 @@ namespace AnonymousPraise.Controllers
 
 		public PeopleController()
 		{
-			_peopleRepository = new SqlPeopleRepository(ConfigurationManager.ConnectionStrings["praise"].ConnectionString);
+			_peopleRepository = new SqlPeopleRepository(ConfigurationManager.ConnectionStrings["anonymouspraise_db"].ConnectionString);
 		}
 
 		// GET api/Employees
