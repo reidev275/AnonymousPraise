@@ -82,9 +82,9 @@ select * from (
 		,min(CreatedDate) as CreatedDate
 		,Moderated
 		,count(praiseId) as Likes
-	FROM [Praise].[dbo].[Praise] with (nolock)
-	join [Praise].[dbo].[people] with (nolock) on [people].Id = [praise].PersonId
-	left join praise.dbo.likes with (nolock) on [praise].id = praiseid
+	FROM [dbo].[Praise] with (nolock)
+	join [dbo].[people] with (nolock) on [people].Id = [praise].PersonId
+	left join dbo.likes with (nolock) on [praise].id = praiseid
 	where Moderated = @Moderated
 	  and [people].Name = isnull(@Person, [people].Name)
 	group by [praise].Id, moderated
