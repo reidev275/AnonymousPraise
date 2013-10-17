@@ -24,6 +24,7 @@ namespace AnonymousPraise.Controllers
 		public ActionResult Edit(string id)
 		{
 			var moderation = _moderationsRepository.GetByGuid(id);
+			if (moderation == null) return GoHome();
 			var praise = _praiseRepository.GetById(moderation.PraiseId);
 
 			return View(praise);
@@ -45,6 +46,11 @@ namespace AnonymousPraise.Controllers
 				_moderationsRepository.Decline(praiseId);
 			}
 			_moderationsRepository.Delete(id);
+			return GoHome();
+		}
+
+		ActionResult GoHome()
+		{
 			return Redirect("http://" + Request.Url.Authority);
 		}
 	}
