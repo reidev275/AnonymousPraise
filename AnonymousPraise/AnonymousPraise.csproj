@@ -99,6 +99,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\ServiceModule.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LikesController.cs" />
     <Compile Include="Controllers\ModerationsController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
@@ -153,9 +154,6 @@
     <Content Include="Content\Site.css" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
