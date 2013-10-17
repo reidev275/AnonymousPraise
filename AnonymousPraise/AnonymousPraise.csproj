@@ -43,6 +43,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -80,23 +86,40 @@
     <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\KernelCreator.cs" />
+    <Compile Include="App_Start\NinjectKernelActivator.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\ServiceModule.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LikesController.cs" />
+    <Compile Include="Controllers\ModerationsController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Controllers\PraiseController.cs" />
+    <Compile Include="Data\IModerationsRepository.cs" />
     <Compile Include="Data\IPeopleRepository.cs" />
     <Compile Include="Data\IPraiseRepository.cs" />
+    <Compile Include="Data\MemoryModerationsRepository.cs" />
+    <Compile Include="Data\MemoryPeopleRepository.cs" />
+    <Compile Include="Data\MemoryPraiseRepository.cs" />
     <Compile Include="Data\SqlMapper.cs" />
+    <Compile Include="Data\SqlModerationsRepository.cs" />
     <Compile Include="Data\SqlPeopleRepository.cs" />
     <Compile Include="Data\SqlPraiseRepository.cs" />
-    <Compile Include="Filters\ModeratorFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Moderation.cs" />
+    <Compile Include="Notification\EmailNotifier.cs" />
+    <Compile Include="Notification\INotifier.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Praise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -123,21 +146,14 @@
     <Content Include="Scripts\Bootstrap\img\glyphicons-halflings.png" />
     <Content Include="Scripts\Bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\Bootstrap\js\bootstrap.min.js" />
-    <Content Include="Scripts\lib\jquery.cookie.js" />
     <Content Include="Scripts\lib\knockout-2.1.0.js" />
     <Content Include="Scripts\ap.people.js" />
     <Content Include="Scripts\ap.praise.js" />
     <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Content\Site.css" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\index.cshtml" />
+    <Content Include="index.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -147,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\ko.slideVisible.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Moderations\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

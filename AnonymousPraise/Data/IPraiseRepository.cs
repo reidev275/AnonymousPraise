@@ -7,11 +7,9 @@ namespace AnonymousPraise.Data
 	{
 		IEnumerable<Praise> GetAll();
 		IEnumerable<Praise> GetByPerson(string person);
+		Praise GetById(int id);
 		int Add(Praise praise);
-		void Delete(int id);
 		void Like(int id);
-
 		IEnumerable<Praise> GetUnmoderated();
-		void MarkModerated(int id);
 	}
 }

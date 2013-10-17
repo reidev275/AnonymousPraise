@@ -4,8 +4,6 @@
 
 	var canCache = localStorage != null,
 		storageLocation = 'ap.Likes',
-		cookieName = 'praisemoderator',
-		moderator = $.cookie(cookieName),
 		aplikes = localStorage[storageLocation],
 		likes = [];
 
@@ -18,9 +16,6 @@
 		}
 	} 
 
-	var addHeader = function(xhr) {
-		xhr.setRequestHeader('PraiseModerator', moderator);
-	};
 	
 	function canLike(id) {
 		if (canCache) {
@@ -33,15 +28,6 @@
 			return false;
 		}
 	}
-
-	ap.setModerator = function (val) {
-		$.cookie(cookieName, val);
-		moderator = val;
-	};
-
-	ap.getModerator = function () {
-		return moderator;
-	};
 
 	ap.Praise = function(obj) {
 		var self = this;
@@ -92,48 +78,13 @@
 		}
 	};
 
-	ap.praise.approve = function(id) {
-		$.ajax({
-			url: "../api/Praise/" + id + "?Moderated=true",
-			type: "Put",
-			cache: false,
-			contentType: "application/json; charset=utf-8",
-			beforeSend: addHeader
-		});
-	};
-
-	ap.praise.deny = function(id) {
-		$.ajax({
-			url: "../api/Praise/" + id,
-			type: "DELETE",
-			cache: false,
-			contentType: "application/json; charset=utf-8",
-			beforeSend: addHeader
-		});
-	};
-
-	ap.praise.unModerated = function (callback) {
-		$.ajax({
-			url: "../api/Praise?moderated=false",
-			type: "GET",
-			cache: false,
-			contentType: "application/json; charset=utf-8",
-			beforeSend: addHeader
-		}).done(function (data) {
-			if (callback) callback(data);
-		});
-	};
-
-	ap.praise.submit = function (praise, callback) {
+	ap.praise.submit = function (praise) {
 		$.ajax({
 			url: "../api/Praise",
 			type: "POST",
 			data: JSON.stringify(praise),
 			cache: false,
-			contentType: "application/json; charset=utf-8",
-			beforeSend: addHeader
-		}).done(function (data) {
-			if (callback) callback(data);
+			contentType: "application/json; charset=utf-8"
 		});
 	};
 

@@ -4,9 +4,9 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Anonymous Praise</title>
-	<link href="~/Scripts/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="~/Scripts/Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-	<link href="~/Content/Site.css" rel="stylesheet" />
+	<link href="/Scripts/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/Scripts/Bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+	<link href="/Content/Site.css" rel="stylesheet" />
 </head>
 	<body>
 
@@ -25,10 +25,6 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="#" data-page="moderation" class="page" data-bind="visible: unModeratedPraise().length > 0">Moderate</a></li>
-						</ul>
-						<ul class="nav pull-right">
-							<li><a href="#" data-page="settings" class="page"><i class="icon-wrench"></i></a></li>
 						</ul>
 					</div><!-- /.navbar-inner -->
 				</div><!-- /.navbar -->
@@ -79,31 +75,7 @@
 						<!-- ko template: { name: 'praise-template', foreach: recentPraise } -->
 						<!-- /ko -->
 					</section>
-					
-					<section id="moderation" class="page">
-						<h3>Moderation</h3>
-						<!-- ko template: { name: 'moderation-template', foreach: unModeratedPraise } -->
-						<!-- /ko -->
-					</section>
-
-					<section id="settings" class="page">
-						<h3>Settings</h3>
-
-						<form class="form-horizontal">
-							<div class="control-group">
-								<label class="control-label" for="inputModeratorKey">Moderator Key</label>
-								<div class="controls">
-									<input type="text" id="inputModeratorKey" placeholder="Moderator Key" data-bind="value: moderatorKey">									
-								</div>
-							</div>
-							<div class="control-group">
-								<div class="controls">
-									<button type="submit" class="btn" data-bind="click: saveModeratorKey">Submit</button>
-								</div>
-							</div>
-						</form>
-					</section>
-					
+										
 					<section id="person" class="page">
 						<h3>
 							<span data-bind="text: viewPerson"></span> 
@@ -116,26 +88,6 @@
 				</div>
 			</div>
 		</div>
-
-		<script type="text/html" id="moderation-template">
-			<blockquote>
-				<div class="row">
-					<div class="span9">
-						<p data-bind="text: Comment"></p>
-						<small>A comment about 
-							<span data-bind="with: Person">
-								<a href="#" data-page="person" class="page" data-bind="click: $root.select, text: $data"></a>
-							</span> posted 
-							<span data-bind="text: Date"></span>
-						</small>
-					</div>
-					<div class="span3">
-						<a class="btn btn-success" data-bind="click: $parent.approve">Approve</a>
-						<a class="btn btn-danger" data-bind="click: $parent.deny">Delete</a>
-					</div>
-				</div>
-			</blockquote>
-		</script>
 
 		<script type="text/html" id="praise-template">
 			<blockquote>
@@ -150,15 +102,14 @@
 		</script>
 		
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-		<script src="~/Scripts/lib/jquery.cookie.js"></script>
-		<script src="~/Scripts/lib/knockout-2.1.0.js"></script>
-		<script src="~/Scripts/ap.initialize.js"></script>
-		<script src="~/Scripts/ap.people.js"></script>
-		<script src="~/Scripts/ap.praise.js"></script>
-		<script src="~/Scripts/ap.routing.js"></script>
-		<script src="~/Scripts/ap.viewModel.js"></script>
-		<script src="~/Scripts/ko.slideVisible.js"></script>
-		<script src="~/Scripts/Bootstrap/js/bootstrap.min.js"></script>
+		<script src="/Scripts/lib/knockout-2.1.0.js"></script>
+		<script src="/Scripts/ap.initialize.js"></script>
+		<script src="/Scripts/ap.people.js"></script>
+		<script src="/Scripts/ap.praise.js"></script>
+		<script src="/Scripts/ap.routing.js"></script>
+		<script src="/Scripts/ap.viewModel.js"></script>
+		<script src="/Scripts/ko.slideVisible.js"></script>
+		<script src="/Scripts/Bootstrap/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function () {
 				ap.initialize();

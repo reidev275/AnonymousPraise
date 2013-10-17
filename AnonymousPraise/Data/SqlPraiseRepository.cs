@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using AnonymousPraise.Models;
 
 namespace AnonymousPraise.Data
@@ -62,16 +63,7 @@ namespace AnonymousPraise.Data
 				return Convert.ToInt32(cmd.ExecuteScalar());
 			}
 		}
-
-		public void Delete(int id)
-		{
-			using (var conn = new SqlConnection(_connectionString))
-			{
-				conn.Open();
-				conn.Execute("Delete from Praise where id = @id", new { id });
-			}
-		}
-
+		
 		public void Like(int id)
 		{
 			using (var conn = new SqlConnection(_connectionString))
@@ -81,12 +73,13 @@ namespace AnonymousPraise.Data
 			}
 		}
 
-		public void MarkModerated(int id)
+		public Praise GetById(int id)
 		{
 			using (var conn = new SqlConnection(_connectionString))
 			{
 				conn.Open();
-				conn.Execute("Update Praise set Moderated = 1 where id = @id", new { id });
+				var results = conn.Query<Praise>("Select * from Praise with (nolock) where id = @id", new { id });
+				return results.FirstOrDefault();
 			}
 		}
 	}

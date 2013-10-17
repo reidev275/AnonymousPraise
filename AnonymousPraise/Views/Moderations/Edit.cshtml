@@ -1,0 +1,28 @@
+﻿@model AnonymousPraise.Models.Praise
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Edit</title>
+</head>
+<body>
+	@using (@Html.BeginForm())
+	{ 
+		@Model.Comment
+
+		<p>Do you approve this praise?</p>
+		<input type="hidden" name="praiseId" value="@Model.Id" />
+		<select name="Approve">
+			<option value="true" selected>Yes</option>
+			<option value="false">No</option>
+		</select>
+		<input type="submit" value="Submit" />
+	}
+</body>
+</html>

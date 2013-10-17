@@ -1,6 +1,5 @@
-﻿using System.Configuration;
+﻿using AnonymousPraise.Data;
 using System.Web.Http;
-using AnonymousPraise.Data;
 
 namespace AnonymousPraise.Controllers
 {
@@ -8,12 +7,11 @@ namespace AnonymousPraise.Controllers
 	{
 		private readonly IPraiseRepository _praiseRepository;
 
-		public LikesController()
+		public LikesController(IPraiseRepository praiseRepository)
 		{
-			_praiseRepository = new SqlPraiseRepository(ConfigurationManager.ConnectionStrings["anonymouspraise_db"].ConnectionString);
+			_praiseRepository = praiseRepository;
 		}
 
-		// POST api/likes
 		public void Post(int praiseId)
 		{
 			_praiseRepository.Like(praiseId);

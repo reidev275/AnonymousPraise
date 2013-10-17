@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using AnonymousPraise.App_Start;
+using System.Web.Routing;
 
 namespace AnonymousPraise
 {
@@ -17,6 +18,7 @@ namespace AnonymousPraise
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+			RouteConfig.RegisterRoutes(RouteTable.Routes);
 		}
 	}
 }

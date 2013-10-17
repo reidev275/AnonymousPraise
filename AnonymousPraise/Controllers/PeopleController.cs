@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
+﻿using AnonymousPraise.Data;
+using System.Collections.Generic;
 using System.Web.Http;
-using AnonymousPraise.Data;
 
 namespace AnonymousPraise.Controllers
 {
@@ -9,12 +8,11 @@ namespace AnonymousPraise.Controllers
 	{
 		private readonly IPeopleRepository _peopleRepository;
 
-		public PeopleController()
+		public PeopleController(IPeopleRepository peopleRepository)
 		{
-			_peopleRepository = new SqlPeopleRepository(ConfigurationManager.ConnectionStrings["anonymouspraise_db"].ConnectionString);
+			_peopleRepository = peopleRepository;
 		}
 
-		// GET api/Employees
 		public IEnumerable<string> Get()
 		{
 			return _peopleRepository.GetAll();
