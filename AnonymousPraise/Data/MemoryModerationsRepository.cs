@@ -19,12 +19,18 @@ namespace AnonymousPraise.Data
 		}
 
 
-		public void Delete(int id)
+		public void Decline(int id)
 		{
 			//throw new System.NotImplementedException();
 		}
 
-		public void MarkModerated(int id)
+		public void Approve(int id)
+		{
+			//throw new System.NotImplementedException();
+		}
+
+
+		public void Delete(string guid)
 		{
 			//throw new System.NotImplementedException();
 		}

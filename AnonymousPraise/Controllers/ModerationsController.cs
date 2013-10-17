@@ -38,12 +38,13 @@ namespace AnonymousPraise.Controllers
 
 			if (collection["Approve"] == "true")
 			{
-				_moderationsRepository.MarkModerated(praiseId);
+				_moderationsRepository.Approve(praiseId);
 			}
 			else
 			{
-				_moderationsRepository.Delete(praiseId);
+				_moderationsRepository.Decline(praiseId);
 			}
+			_moderationsRepository.Delete(id);
 			return Redirect("http://" + Request.Url.Authority);
 		}
 	}

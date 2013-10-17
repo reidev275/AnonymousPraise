@@ -6,7 +6,8 @@ namespace AnonymousPraise.Data
 	{
 		void Insert(Moderation moderation);
 		Moderation GetByGuid(string guid);
-		void Delete(int id);
-		void MarkModerated(int id);
+		void Decline(int id);
+		void Approve(int id);
+		void Delete(string guid);
 	}
 }

@@ -32,7 +32,7 @@ namespace AnonymousPraise.Data
 			}
 		}
 
-		public void Delete(int id)
+		public void Decline(int id)
 		{
 			using (var conn = new SqlConnection(_connectionString))
 			{
@@ -41,12 +41,22 @@ namespace AnonymousPraise.Data
 			}
 		}
 
-		public void MarkModerated(int id)
+		public void Approve(int id)
 		{
 			using (var conn = new SqlConnection(_connectionString))
 			{
 				conn.Open();
 				conn.Execute("Update Praise set Moderated = 1 where id = @id", new { id });
+			}
+		}
+
+
+		public void Delete(string guid)
+		{
+			using (var conn = new SqlConnection(_connectionString))
+			{
+				conn.Open();
+				conn.Execute("Delete from Moderations where Guid = @guid", new { guid });
 			}
 		}
 	}
