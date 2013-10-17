@@ -44,10 +44,11 @@ namespace AnonymousPraise.Controllers
 
 			if (person != null) 
 				_notifier.Notify(person.Email, 
-				"<p>Someone just gave you the following praise...</p>" +
-				"<p>" + praise.Comment + "</p>" +
+				"<p><strong style='color: #880000'>" + praise.Comment + "</strong></p>" +
 				"<p><a href='http://" + Request.RequestUri.Authority + "/moderations/edit/" + moderationGuid + "'>Approve or Decline this praise</a>" +
-				"<br><br><p>*All praise must be approved by you before it is visible to others on the site</p>");
+				"<p style='color: #999'>AnonymousPraise is a site dedicated to giving anonymous praise to your fellow coworkers on the Docsolutions platform." +
+				" All praise must be approved by you before it is visible to others on the site</p>" +
+				"<a href='http://anonymouspraise.azurewebsites.net'>http://AnonymousPraise.azurewebsites.net</a>");
 		}
 	}
 }
